@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { useState } from 'react';
+import { newsApi } from 'lib/api';
 
 const useNewsApi = () => {
     return [];
