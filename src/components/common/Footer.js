@@ -11,7 +11,7 @@ const Container = styled.footer`
         cursor: pointer;
 
         &:hover {
-            color: gray;
+            color: rgba(0, 0, 0, 0.5);
         }
     }
 `;
