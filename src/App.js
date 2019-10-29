@@ -1,8 +1,10 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
-import { Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
+import { Provider as NewsProvider } from 'contexts/newsContext';
 import NewsPage from 'pages/NewsPage';
+import NotFoundPage from 'pages/NotFoundPage';
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -10,14 +12,25 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         box-sizing: inherit;
     }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 `;
 
 const App = () => {
     return (
-        <>
+        <NewsProvider>
             <GlobalStyle />
-            <Route path="/:category?" component={NewsPage} />
-        </>
+            <Switch>
+                <Route exact path="/">
+                    <Redirect to="/us" />
+                </Route>
+                <Route exact path="/:country/:category?" component={NewsPage} />
+                <Route component={NotFoundPage} />
+            </Switch>
+        </NewsProvider>
     );
 };
 

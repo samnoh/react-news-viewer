@@ -14,7 +14,7 @@ const categories = [
     'technology'
 ];
 
-const NavBarContainer = styled.div`
+const NavBarContainer = styled.nav`
     border-bottom: solid 1px #e5e5e5;
     height: 80px;
 
@@ -28,6 +28,7 @@ const CategoryContainer = styled.div`
     display: flex;
     margin: 0 auto;
     align-items: center;
+    justify-content: space-between;
     height: 100%;
     max-width: 770px;
 
@@ -38,14 +39,12 @@ const CategoryContainer = styled.div`
 
 const Category = styled(NavLink)`
     cursor: pointer;
-    text-decoration: none;
-    color: inherit;
     text-align: center;
     font-weight: 300;
     font-size: 18px;
     transition: color 0.2s ease-in-out;
-    width: 110px;
     line-height: 80px;
+    padding: 0 5px;
 
     ${media.tablet`
         line-height: 40px;
@@ -67,7 +66,7 @@ const Category = styled(NavLink)`
     }
 `;
 
-const NavBar = () => {
+const NavBar = ({ country }) => {
     return (
         <NavBarContainer>
             <CategoryContainer>
@@ -76,7 +75,7 @@ const NavBar = () => {
                         key={c}
                         activeClassName="active"
                         exact={c === 'all'}
-                        to={c === 'all' ? '/' : `/${c}`}
+                        to={c === 'all' ? `/${country}` : `/${country}/${c}`}
                     >
                         {c.charAt(0).toUpperCase() + c.substring(1)}
                     </Category>
