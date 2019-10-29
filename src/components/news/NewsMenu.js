@@ -18,7 +18,7 @@ const MenuContainer = styled.div`
         width: 110px;
         height: 30px;
         background-color: white;
-        border: 1px solid black;
+        border: 1px solid rgba(0, 0, 0, 0.5);
     }
 `;
 
@@ -30,7 +30,7 @@ const UpdateButton = styled.div`
         transition: all 0.3s ease-out;
 
         &:hover {
-            background-color: lightgray;
+            background-color: rgba(0, 0, 0, 0.1);
             border: 1px solid gray;
         }
     }
