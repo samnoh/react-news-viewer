@@ -23,7 +23,6 @@ const BodyBlock = styled.div`
 
     .title {
         font-size: 24px;
-        text-align: center;
         margin-bottom: 20px;
 
         &:hover {
@@ -51,6 +50,7 @@ const Image = styled.img`
     width: 200px;
     height: 200px;
     object-fit: cover;
+    object-position: 50% 0;
     border-radius: 5px;
 
     ${media.tablet`

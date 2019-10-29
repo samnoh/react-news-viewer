@@ -72,9 +72,10 @@ const NavBar = ({ country }) => {
             <CategoryContainer>
                 {categories.map(c => (
                     <Category
+                        target="_top"
                         key={c}
                         activeClassName="active"
-                        exact={c === 'all'}
+                        exact
                         to={c === 'all' ? `/${country}` : `/${country}/${c}`}
                     >
                         {c.charAt(0).toUpperCase() + c.substring(1)}

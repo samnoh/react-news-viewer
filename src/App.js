@@ -13,6 +13,10 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: inherit;
     }
 
+    body {
+        overflow-y: scroll;
+    }
+
     a {
         text-decoration: none;
         color: inherit;

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import qs from 'qs';
 
 import NavBar from 'components/common/NavBar';
 import NewsMenu from 'components/news/NewsMenu';
@@ -12,16 +13,17 @@ const Main = styled.main`
     padding: 0 30px;
 `;
 
-const NewsPage = ({ match }) => {
+const NewsPage = ({ match, location }) => {
     const category = match.params.category || 'all';
     const country = match.params.country;
+    const query = qs.parse(location.search, { ignoreQueryPrefix: true });
 
     return (
         <>
             <NavBar country={country} />
             <Main>
-                <NewsMenu category={category} country={country} />
-                <NewsList category={category} country={country} />
+                <NewsMenu category={category} country={country} query={query.q} />
+                <NewsList category={category} country={country} query={query.q} />
             </Main>
             <Footer />
         </>

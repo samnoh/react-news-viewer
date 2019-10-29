@@ -10,9 +10,10 @@ const getNewsAction = news => ({
     payload: news
 });
 
-export const getNews = dispatch => async (category, country) => {
-    const params = { country, category };
+export const getNews = dispatch => async ({ country, category, query: q }) => {
+    const params = { country, category, q };
     if (category === 'all') delete params.category;
+    if (!q) delete params.q;
 
     dispatch({ type: GET_NEWS_LOADING });
     try {

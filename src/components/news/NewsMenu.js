@@ -4,14 +4,15 @@ import { withRouter } from 'react-router-dom';
 
 import media from 'styles/media';
 import { Context as NewsContext } from 'contexts/newsContext';
+import useInput from 'hooks/useInput';
 
 const MenuContainer = styled.div`
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin: 25px 0 50px;
-    ${media.tablet`justify-content: space-between;`}
 
     .btn {
+        margin-right: 20px;
         outline: none;
         font-weight: 300;
         font-size: 16px;
@@ -22,9 +23,37 @@ const MenuContainer = styled.div`
     }
 `;
 
-const UpdateButton = styled.div`
-    margin-right: 20px;
+const BottonBlock = styled.div`
+    display: flex;
+`;
 
+const InputBlock = styled.div`
+    ${media.tablet`
+        flex:1;
+        `}
+
+    input {
+        font-weight: 300;
+        padding: 0 5px;
+        outline: none;
+        font-size: 16px;
+        width: 150px;
+        height: 30px;
+        border-radius: 5px;
+        border: none;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        ${media.tablet`
+            width: 100%;
+        `}
+
+        &::placeholder {
+            text-align: center;
+            color: lightgray;
+        }
+    }
+`;
+
+const UpdateButton = styled.div`
     button {
         border-radius: 5px;
         transition: all 0.3s ease-out;
@@ -43,11 +72,13 @@ const SelectContainer = styled.div`
     }
 `;
 
-const NewsMenu = memo(({ category, country, history }) => {
+const NewsMenu = memo(({ history, location, category, country, query }) => {
     const { getNews } = useContext(NewsContext);
+    const [value, , onChange] = useInput();
+
     const c = category === 'all' ? '' : `/${category}`;
 
-    const onChange = useCallback(
+    const onSelectChange = useCallback(
         e => {
             history.push(`/${e.target.value}${c}`);
             history.go();
@@ -57,23 +88,40 @@ const NewsMenu = memo(({ category, country, history }) => {
     );
 
     const onClick = useCallback(() => {
-        getNews(category, country);
+        getNews({ category, country, query });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [category]);
 
+    const onSubmit = useCallback(
+        e => {
+            e.preventDefault();
+            history.push(location.pathname + `?q=${value}`);
+            history.go();
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [value]
+    );
+
     return (
         <MenuContainer>
-            <UpdateButton>
-                <button className="btn" onClick={onClick}>
-                    Update
-                </button>
-            </UpdateButton>
-            <SelectContainer>
-                <select className="btn" onChange={onChange} value={country}>
-                    <option value="us">US</option>
-                    <option value="kr">Korea</option>
-                </select>
-            </SelectContainer>
+            <BottonBlock>
+                <SelectContainer>
+                    <select className="btn" onChange={onSelectChange} value={country}>
+                        <option value="us">US</option>
+                        <option value="kr">Korea</option>
+                    </select>
+                </SelectContainer>
+                <UpdateButton>
+                    <button className="btn" onClick={onClick}>
+                        Update
+                    </button>
+                </UpdateButton>
+            </BottonBlock>
+            <InputBlock>
+                <form onSubmit={onSubmit}>
+                    <input type="text" value={value} onChange={onChange} placeholder="Search" />
+                </form>
+            </InputBlock>
         </MenuContainer>
     );
 });

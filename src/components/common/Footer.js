@@ -7,6 +7,7 @@ const Container = styled.footer`
     height: 50px;
     max-width: 1080px;
     margin: 0 auto;
+    margin-right: 30px;
 
     .text {
         text-align: right;
