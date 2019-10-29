@@ -23,15 +23,18 @@ const NewsList = ({ country, category, query }) => {
     const { news, loading, error } = state;
     const { articles } = news;
 
-    useEffect(() => {
-        getNews({ country, category, query });
+    useEffect(
+        () => {
+            getNews({ country, category, query });
+        },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [category]);
+        [category, query]
+    );
 
     if (loading) {
         return (
             <ArticleContainer>
-                <div class="errorMessage">Loading...</div>
+                <div className="errorMessage">Loading...</div>
             </ArticleContainer>
         );
     }
@@ -48,7 +51,7 @@ const NewsList = ({ country, category, query }) => {
         return (
             <ArticleContainer>
                 {query && <h2>Results for "{query}"</h2>}
-                <div class="errorMessage">No Result</div>
+                <div className="errorMessage">No Result</div>
             </ArticleContainer>
         );
     }

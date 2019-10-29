@@ -72,7 +72,6 @@ const NavBar = ({ country }) => {
             <CategoryContainer>
                 {categories.map(c => (
                     <Category
-                        target="_top"
                         key={c}
                         activeClassName="active"
                         exact
