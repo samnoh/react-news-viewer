@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+
+import { Context as NewsContext } from 'contexts/newsContext';
 
 const Container = styled.footer`
     height: 50px;
@@ -17,6 +19,11 @@ const Container = styled.footer`
 `;
 
 const Footer = () => {
+    const { state } = useContext(NewsContext);
+    const { loading } = state;
+
+    if (loading) return null;
+
     return (
         <Container>
             <div className="text">
