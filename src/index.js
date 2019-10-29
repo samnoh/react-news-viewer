@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import App from './App';
+import App from 'App';
 import * as serviceWorker from './serviceWorker';
+import { Provider as NewsProvider } from 'contexts/newsContext';
 
 ReactDOM.render(
     <BrowserRouter>
-        <App />
+        <NewsProvider>
+            <App />
+        </NewsProvider>
     </BrowserRouter>,
     document.getElementById('root')
 );

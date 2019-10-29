@@ -76,12 +76,10 @@ const NewsMenu = memo(({ history, location, category, country, query }) => {
     const { getNews } = useContext(NewsContext);
     const [value, setValue, onChange] = useInput();
 
-    const c = category === 'all' ? '' : `/${category}`;
-
     const onSelectChange = useCallback(
         e => {
+            const c = category === 'all' ? '' : `/${category}`;
             history.push(`/${e.target.value}${c}`);
-            history.go();
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [category]
@@ -92,7 +90,7 @@ const NewsMenu = memo(({ history, location, category, country, query }) => {
             getNews({ category, country, query });
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [category, query]
+        [category, country, query]
     );
 
     const onSubmit = useCallback(
@@ -102,7 +100,6 @@ const NewsMenu = memo(({ history, location, category, country, query }) => {
             value.length
                 ? history.push(location.pathname + `?q=${value}`)
                 : history.push(location.pathname);
-            getNews({ category, country, query: value });
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [category, value]
@@ -125,7 +122,14 @@ const NewsMenu = memo(({ history, location, category, country, query }) => {
             </BottonBlock>
             <InputBlock>
                 <form onSubmit={onSubmit}>
-                    <input type="text" value={value} onChange={onChange} placeholder="Search" />
+                    <input
+                        type="text"
+                        value={value}
+                        onChange={onChange}
+                        placeholder="Search"
+                        maxlength="255"
+                        autoComplete="off"
+                    />
                 </form>
             </InputBlock>
         </MenuContainer>

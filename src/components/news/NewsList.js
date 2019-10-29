@@ -28,7 +28,7 @@ const NewsList = ({ country, category, query }) => {
             getNews({ country, category, query });
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [category, query]
+        [country, category, query]
     );
 
     if (loading) {
@@ -40,7 +40,11 @@ const NewsList = ({ country, category, query }) => {
     }
 
     if (!articles) {
-        return null;
+        return (
+            <ArticleContainer>
+                <div className="errorMessage">API request was not successful...</div>
+            </ArticleContainer>
+        );
     }
 
     if (error) {

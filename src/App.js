@@ -2,7 +2,6 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { Provider as NewsProvider } from 'contexts/newsContext';
 import NewsPage from 'pages/NewsPage';
 import NotFoundPage from 'pages/NotFoundPage';
 
@@ -25,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
 
 const App = () => {
     return (
-        <NewsProvider>
+        <>
             <GlobalStyle />
             <Switch>
                 <Route exact path="/">
@@ -34,7 +33,7 @@ const App = () => {
                 <Route exact path="/:country/:category?" component={NewsPage} />
                 <Route component={NotFoundPage} />
             </Switch>
-        </NewsProvider>
+        </>
     );
 };
 

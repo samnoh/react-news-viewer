@@ -10,11 +10,13 @@ const Container = styled.footer`
     margin-right: 30px;
 
     .text {
+        font-weight: 300;
+        color: gray;
         text-align: right;
         cursor: pointer;
 
         &:hover {
-            color: rgba(0, 0, 0, 0.5);
+            color: rgba(0, 0, 0, 0.3);
         }
     }
 `;

@@ -21,6 +21,7 @@ export const getNews = dispatch => async ({ country, category, query: q }) => {
         dispatch(getNewsAction(news.data));
         dispatch({ type: GET_NEWS_DONE });
     } catch (e) {
+        console.error(e);
         dispatch({ type: GET_NEWS_ERROR });
     }
 };
