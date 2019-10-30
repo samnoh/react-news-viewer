@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
@@ -72,6 +72,7 @@ const CategoryContainer = styled.div`
 
 const Category = styled(NavLink)`
     cursor: pointer;
+    user-select: none;
     text-align: center;
     font-weight: 300;
     font-size: 18px;
@@ -110,6 +111,24 @@ const NavBar = ({ country }) => {
         setVisible(!isVisible);
     }, [isVisible]);
 
+    const categoryMenu = useMemo(
+        () => {
+            return categories.map(c => (
+                <Category
+                    onClick={navToggle}
+                    key={c}
+                    activeClassName="active"
+                    exact
+                    to={c === 'all' ? `/${country}` : `/${country}/${c}`}
+                >
+                    {c.charAt(0).toUpperCase() + c.substring(1)}
+                </Category>
+            ));
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [isVisible]
+    );
+
     const nav = useMemo(
         () => {
             if (width <= 768 && !isVisible) {
@@ -125,19 +144,7 @@ const NavBar = ({ country }) => {
             return (
                 <NavBarContainer>
                     {isTablet && <CrossOut className="icon" onClick={navToggle} />}
-                    <CategoryContainer>
-                        {categories.map(c => (
-                            <Category
-                                onClick={navToggle}
-                                key={c}
-                                activeClassName="active"
-                                exact
-                                to={c === 'all' ? `/${country}` : `/${country}/${c}`}
-                            >
-                                {c.charAt(0).toUpperCase() + c.substring(1)}
-                            </Category>
-                        ))}
-                    </CategoryContainer>
+                    <CategoryContainer>{categoryMenu}</CategoryContainer>
                 </NavBarContainer>
             );
         },
