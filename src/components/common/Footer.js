@@ -55,7 +55,7 @@ const Footer = () => {
                 </a>
             </div>
             <div className="right">
-                Powered by <a href="https://newsapi.org">NewsAPI</a>
+                <a href="https://newsapi.org">Powered by NewsAPI</a>
             </div>
         </Container>
     );
