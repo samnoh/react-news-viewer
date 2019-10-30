@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Context as NewsContext } from 'contexts/newsContext';
 import { ReactComponent as GithubLogo } from 'assets/github_logo.svg';
+import media from 'styles/media';
 
 const Container = styled.footer`
     padding: 0 30px;
@@ -15,6 +16,10 @@ const Container = styled.footer`
     flex-direction: row;
     font-weight: 300;
     color: gray;
+
+    ${media.mobile`
+        padding: 0 15px;
+    `}
 
     .left,
     .right {
