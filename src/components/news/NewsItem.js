@@ -16,7 +16,8 @@ const ItemContainer = styled.article`
     }
 
     ${media.tablet`
-        margin-bottom: 15px;
+        padding-bottom: 5px;
+        margin-bottom: 20px;
         flex-direction: column-reverse;
     `}
 `;

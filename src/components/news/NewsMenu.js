@@ -13,7 +13,8 @@ const MenuContainer = styled.div`
     margin: 25px 0 50px;
 
     ${media.tablet`
-        margin-bottom: 25px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     `}
 
     .btn {
@@ -21,10 +22,11 @@ const MenuContainer = styled.div`
         outline: none;
         font-weight: 300;
         font-size: 16px;
-        width: 110px;
+        width: 90px;
         height: 30px;
         background-color: white;
-        border: 1px solid rgba(0, 0, 0, 0.5);
+        color: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(0, 0, 0, 0.2);
 
         ${media.mobile`
             font-size: 14px;
@@ -38,19 +40,37 @@ const BottonBlock = styled.div`
 `;
 
 const SelectContainer = styled.div`
+    border-radius: 5px;
+
     select {
+        cursor: pointer;
+        outline: none;
+        padding: 0 34px;
+        background: white;
+        font-weight: inherit;
+        font-size: inherit;
+        color: inherit;
+        height: 100%;
+        border: none;
         -moz-appearance: none;
         -webkit-appearance: none;
-        text-align-last: center;
-        text-align: center;
-
         &::-ms-expand {
             display: none;
+        }
+
+        ${media.tablet`
+            padding: 0 25.5px;
+        `}
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            border: 1px solid gray;
         }
     }
 `;
 
-const UpdateButton = styled.div`
+const RefreshContainer = styled.div`
     button {
         cursor: pointer;
         border-radius: 5px;
@@ -58,7 +78,6 @@ const UpdateButton = styled.div`
 
         @media (hover: hover) {
             &:hover {
-                background-color: rgba(0, 0, 0, 0.1);
                 border: 1px solid gray;
             }
         }
@@ -87,7 +106,7 @@ const InputBlock = styled.div`
 
         &::placeholder {
             text-align: center;
-            color: lightgray;
+            color: rgba(0, 0, 0, 0.3);
         }
 
         ${media.mobile`
@@ -148,18 +167,18 @@ const NewsMenu = memo(({ history, location, category, country, query }) => {
     return (
         <MenuContainer>
             <BottonBlock>
-                <SelectContainer>
-                    <select className="btn" onChange={onSelectChange} value={country}>
+                <SelectContainer className="btn">
+                    <select name="country" onChange={onSelectChange} value={country}>
                         <option value="us">US</option>
-                        <option value="nz">New Zealand</option>
-                        <option value="kr">Korea</option>
+                        <option value="nz">NZ</option>
+                        <option value="kr">KR</option>
                     </select>
                 </SelectContainer>
-                <UpdateButton>
+                <RefreshContainer>
                     <button className="btn" onClick={onClick}>
-                        Update
+                        Refresh
                     </button>
-                </UpdateButton>
+                </RefreshContainer>
             </BottonBlock>
             <InputBlock>
                 <form onSubmit={onSubmit}>

@@ -1,9 +1,10 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 import media from 'styles/media';
 import useWindowSzie from 'hooks/useWindowSize';
+import { Context as NewsContext } from 'contexts/newsContext';
 import { ReactComponent as MenuBar } from 'assets/menu.svg';
 import { ReactComponent as CrossOut } from 'assets/cross-out.svg';
 
@@ -29,7 +30,7 @@ const MenuBarContainer = styled.div`
     `}
 
     .icon {
-        width: 35px;
+        width: 30px;
         cursor: pointer;
     }
 `;
@@ -46,7 +47,7 @@ const NavBarContainer = styled.nav`
     .icon {
         cursor: pointer;
         position: absolute;
-        width: 25px;
+        width: 22px;
         top: 25px;
         left: 35px;
 
@@ -103,9 +104,14 @@ const Category = styled(NavLink)`
 `;
 
 const NavBar = ({ country }) => {
+    const { state } = useContext(NewsContext);
     const [isVisible, setVisible] = useState(false);
     const [width] = useWindowSzie();
     const isTablet = width < 768;
+
+    useEffect(() => {
+        setVisible(false);
+    }, [state.loading]);
 
     const navToggle = useCallback(() => {
         setVisible(!isVisible);
