@@ -63,8 +63,8 @@ const NewsList = ({ country, category, query }) => {
     return (
         <ArticleContainer>
             {query && <h2>Results for "{query}"</h2>}
-            {articles.map((a, i) => (
-                <NewsItem key={a.url} article={a} index={i} />
+            {articles.map(a => (
+                <NewsItem key={a.url} article={a} />
             ))}
         </ArticleContainer>
     );

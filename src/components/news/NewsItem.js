@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import media from 'styles/media';
 
@@ -11,7 +11,12 @@ const ItemContainer = styled.article`
     justify-content: space-between;
     align-items: center;
 
+    &:last-child {
+        margin-bottom: 0px;
+    }
+
     ${media.tablet`
+        margin-bottom: 15px;
         flex-direction: column-reverse;
     `}
 `;
@@ -45,7 +50,11 @@ const BodyBlock = styled.div`
     }
 `;
 
-const ImageBlock = styled.div``;
+const ImageBlock = styled.div`
+    ${media.tablet`
+        width: 100%;
+    `}
+`;
 
 const Image = styled.img`
     display: block;
@@ -54,16 +63,11 @@ const Image = styled.img`
     object-fit: cover;
     object-position: 50% 0;
     border-radius: 5px;
-    transition: all 0.3s ease-in-out;
+    transition: filter 0.3s ease-in-out;
 
     ${media.tablet`
         width: 100%;
-        margin: 25px 0;
-        ${props =>
-            props.firstChild &&
-            css`
-                margin-top: 0;
-            `}
+        margin-bottom: 15px;
     `}
 
     &:hover {
@@ -71,7 +75,7 @@ const Image = styled.img`
     }
 `;
 
-const NewsItem = memo(({ article, index }) => {
+const NewsItem = memo(({ article }) => {
     const { title, description, url, urlToImage, publishedAt } = article;
     const date = new Date(publishedAt);
 
@@ -92,12 +96,7 @@ const NewsItem = memo(({ article, index }) => {
             </BodyBlock>
             <ImageBlock>
                 <a href={url} target="_blank" rel="noopener noreferrer">
-                    <Image
-                        src={urlToImage}
-                        alt={title}
-                        onError={onError}
-                        firstChild={index === 0}
-                    />
+                    <Image src={urlToImage} alt={title} onError={onError} />
                 </a>
             </ImageBlock>
         </ItemContainer>

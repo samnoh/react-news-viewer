@@ -2,22 +2,37 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { Context as NewsContext } from 'contexts/newsContext';
+import { ReactComponent as GithubLogo } from 'assets/github_logo.svg';
 
 const Container = styled.footer`
     padding: 0 30px;
-    height: 50px;
+    height: 80px;
     max-width: 1080px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    font-weight: 300;
+    color: gray;
 
-    .text {
-        font-weight: 300;
-        color: gray;
-        text-align: right;
+    .left,
+    .right {
         cursor: pointer;
-
         &:hover {
             color: rgba(0, 0, 0, 0.3);
         }
+
+        &:hover .logo {
+            opacity: 0.2;
+        }
+    }
+
+    .logo {
+        vertical-align: text-top;
+        width: 15px;
+        margin-right: 3px;
+        opacity: 0.3;
     }
 `;
 
@@ -29,8 +44,18 @@ const Footer = () => {
 
     return (
         <Container>
-            <div className="text">
-                Powered by <a href="https://newsapi.org">News API</a>
+            <div className="left">
+                <a
+                    href="https://github.com/samnoh/react-news-viewer"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <GithubLogo className="logo" />
+                    GitHub
+                </a>
+            </div>
+            <div className="right">
+                Powered by <a href="https://newsapi.org">NewsAPI</a>
             </div>
         </Container>
     );
