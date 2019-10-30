@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         overflow-y: scroll;
+        font-family: 'Roboto', sans-serif;
     }
 
     a {

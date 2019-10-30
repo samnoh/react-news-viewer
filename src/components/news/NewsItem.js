@@ -29,10 +29,18 @@ const BodyBlock = styled.div`
     .title {
         font-size: 24px;
         margin-bottom: 20px;
+        font-weight: 400;
+
+        ${media.mobile`
+            font-size: 20px;
+            margin-bottom: 10px;
+        `}
 
         a {
-            &:hover {
-                color: rgba(0, 0, 0, 0.6);
+            @media (hover: hover) {
+                &:hover {
+                    color: rgba(0, 0, 0, 0.6);
+                }
             }
         }
     }
@@ -40,6 +48,11 @@ const BodyBlock = styled.div`
     .desc {
         line-height: 1.8;
         display: inline;
+        font-weight: 300;
+
+        ${media.mobile`
+            font-size: 15px;
+        `}
     }
 
     .date {
@@ -47,6 +60,10 @@ const BodyBlock = styled.div`
         color: gray;
         font-size: 14px;
         vertical-align: middle;
+
+        ${media.mobile`
+            font-size: 13px;
+        `}
     }
 `;
 
@@ -70,8 +87,15 @@ const Image = styled.img`
         margin-bottom: 15px;
     `}
 
-    &:hover {
-        filter: brightness(0.8);
+    ${media.mobile`
+        height: 175px;
+        margin-bottom: 10px;
+    `}
+
+    @media (hover: hover) {
+        &:hover {
+            filter: brightness(0.8);
+        }
     }
 `;
 

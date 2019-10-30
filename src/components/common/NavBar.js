@@ -50,8 +50,10 @@ const Category = styled(NavLink)`
         line-height: 40px;
     `};
 
-    &:hover {
-        color: rgba(0, 0, 0, 0.5);
+    @media (hover: hover) {
+        &:hover {
+            color: rgba(0, 0, 0, 0.5);
+        }
     }
 
     &.active {

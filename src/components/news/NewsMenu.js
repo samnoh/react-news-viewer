@@ -25,6 +25,11 @@ const MenuContainer = styled.div`
         height: 30px;
         background-color: white;
         border: 1px solid rgba(0, 0, 0, 0.5);
+
+        ${media.mobile`
+            font-size: 14px;
+            width: 70px;
+        `}
     }
 `;
 
@@ -51,26 +56,25 @@ const UpdateButton = styled.div`
         border-radius: 5px;
         transition: all 0.3s ease-out;
 
-        &:hover {
-            background-color: rgba(0, 0, 0, 0.1);
-            border: 1px solid gray;
+        @media (hover: hover) {
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.1);
+                border: 1px solid gray;
+            }
         }
     }
 `;
 
 const InputBlock = styled.div`
-    ${media.tablet`
-        flex:1;
-    `}
-
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     height: 30px;
     width: 170px;
     padding: 0 5px;
+
     ${media.tablet`
-            width: 100%;
-        `}
+        width: 100%;
+    `}
 
     input {
         float: left;
@@ -79,13 +83,16 @@ const InputBlock = styled.div`
         width: calc(100% - 25px);
         outline: none;
         font-size: 16px;
-
         border: none;
 
         &::placeholder {
             text-align: center;
             color: lightgray;
         }
+
+        ${media.mobile`
+            font-size: 15px;
+        `}
     }
 
     button.btn {
@@ -97,9 +104,11 @@ const InputBlock = styled.div`
         opacity: 0.2;
     }
 
-    .search_btn:hover {
-        opacity: 1;
-        fill: #357ac6;
+    @media (hover: hover) {
+        .search_btn:hover {
+            opacity: 1;
+            fill: #357ac6;
+        }
     }
 `;
 
