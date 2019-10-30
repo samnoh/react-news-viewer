@@ -48,8 +48,10 @@ const BodyBlock = styled.div`
 
     .desc {
         line-height: 1.8;
-        display: inline;
+        display: inline-block;
         font-weight: 300;
+        overflow-wrap: break-word;
+        width: 100%;
 
         ${media.mobile`
             font-size: 15px;
@@ -58,9 +60,9 @@ const BodyBlock = styled.div`
 
     .date {
         display: inline-block;
-        color: gray;
+        color: rgba(0, 0, 0, 0.3);
         font-size: 14px;
-        vertical-align: middle;
+        vertical-align: 1px;
 
         ${media.mobile`
             font-size: 13px;
@@ -116,8 +118,10 @@ const NewsItem = memo(({ article }) => {
                         {title}
                     </a>
                 </div>
-                <div className="desc">{description} </div>
-                <div className="date">{`${date.getMonth() + 1}/${date.getDate()}`}</div>
+                <div className="desc">
+                    {description}{' '}
+                    <div className="date">{`${date.getMonth() + 1}/${date.getDate()}`}</div>
+                </div>
             </BodyBlock>
             <ImageBlock>
                 <a href={url} target="_blank" rel="noopener noreferrer">

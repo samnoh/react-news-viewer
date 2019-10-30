@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import media from 'styles/media';
 import useWindowSzie from 'hooks/useWindowSize';
 import { Context as NewsContext } from 'contexts/newsContext';
+import { capitalize } from 'lib/helpers';
 import { ReactComponent as MenuBar } from 'assets/menu.svg';
 import { ReactComponent as CrossOut } from 'assets/cross-out.svg';
 
@@ -127,7 +128,7 @@ const NavBar = ({ country }) => {
                     exact
                     to={c === 'all' ? `/${country}` : `/${country}/${c}`}
                 >
-                    {c.charAt(0).toUpperCase() + c.substring(1)}
+                    {capitalize(c)}
                 </Category>
             ));
         },

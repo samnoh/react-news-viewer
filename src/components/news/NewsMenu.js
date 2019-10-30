@@ -58,7 +58,7 @@ const SelectContainer = styled.div`
             display: none;
         }
 
-        ${media.tablet`
+        ${media.mobile`
             padding: 0 25.5px;
         `}
     }
@@ -73,10 +73,11 @@ const RefreshContainer = styled.div`
 `;
 
 const InputBlock = styled.div`
+    box-sizing: inherit;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.5);
     height: 30px;
-    width: 170px;
+    width: 188px;
     padding: 0 5px;
 
     ${media.tablet`
