@@ -25,8 +25,8 @@ const MenuContainer = styled.div`
         width: 90px;
         height: 30px;
         background-color: white;
-        color: rgba(0, 0, 0, 0.3);
-        border: 1px solid rgba(0, 0, 0, 0.2);
+        color: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(0, 0, 0, 0.5);
 
         ${media.mobile`
             font-size: 14px;
@@ -62,12 +62,6 @@ const SelectContainer = styled.div`
             padding: 0 25.5px;
         `}
     }
-
-    @media (hover: hover) {
-        &:hover {
-            border: 1px solid gray;
-        }
-    }
 `;
 
 const RefreshContainer = styled.div`
@@ -75,18 +69,12 @@ const RefreshContainer = styled.div`
         cursor: pointer;
         border-radius: 5px;
         transition: all 0.3s ease-out;
-
-        @media (hover: hover) {
-            &:hover {
-                border: 1px solid gray;
-            }
-        }
     }
 `;
 
 const InputBlock = styled.div`
     border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.5);
     height: 30px;
     width: 170px;
     padding: 0 5px;
@@ -105,8 +93,9 @@ const InputBlock = styled.div`
         border: none;
 
         &::placeholder {
+            text-indent: 20px;
             text-align: center;
-            color: rgba(0, 0, 0, 0.3);
+            color: rgba(0, 0, 0, 0.5);
         }
 
         ${media.mobile`
@@ -120,14 +109,7 @@ const InputBlock = styled.div`
         width: 20px;
         margin: 0;
         border: none;
-        opacity: 0.2;
-    }
-
-    @media (hover: hover) {
-        .search_btn:hover {
-            opacity: 1;
-            fill: #357ac6;
-        }
+        opacity: 0.4;
     }
 `;
 
