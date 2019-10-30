@@ -34,6 +34,13 @@ const MenuBarContainer = styled.div`
         width: 30px;
         cursor: pointer;
     }
+
+    .title {
+        font-size: 22px;
+        flex: 1;
+        text-align: center;
+        text-indent: -30px;
+    }
 `;
 
 const NavBarContainer = styled.nav`
@@ -104,7 +111,7 @@ const Category = styled(NavLink)`
     }
 `;
 
-const NavBar = ({ country }) => {
+const NavBar = ({ category, country }) => {
     const { state } = useContext(NewsContext);
     const [isVisible, setVisible] = useState(false);
     const [width] = useWindowSzie();
@@ -133,7 +140,7 @@ const NavBar = ({ country }) => {
             ));
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [isVisible]
+        [isVisible, country]
     );
 
     const nav = useMemo(
@@ -142,6 +149,9 @@ const NavBar = ({ country }) => {
                 return (
                     <MenuBarContainer onClick={navToggle} isVisible={isVisible}>
                         <MenuBar className="icon" />
+                        <div className="title">
+                            {category === 'all' ? 'Headlines' : capitalize(category)}
+                        </div>
                     </MenuBarContainer>
                 );
             }
@@ -156,7 +166,7 @@ const NavBar = ({ country }) => {
             );
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [isTablet, isVisible]
+        [isTablet, isVisible, country]
     );
 
     return <>{nav}</>;

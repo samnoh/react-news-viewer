@@ -40,7 +40,7 @@ const NewsPage = ({ match, location }) => {
     return (
         <>
             {htmlTitle}
-            <NavBar country={country} />
+            <NavBar category={category} country={country} />
             <Main>
                 <NewsMenu category={category} country={country} query={q} />
                 <NewsList category={category} country={country} query={q} />
