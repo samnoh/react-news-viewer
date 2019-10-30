@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 import media from 'styles/media';
+import useWindowSzie from 'hooks/useWindowSize';
+import { ReactComponent as MenuBar } from 'assets/menu.svg';
+import { ReactComponent as CrossOut } from 'assets/cross-out.svg';
 
 const categories = [
     'all',
@@ -14,14 +17,44 @@ const categories = [
     'technology'
 ];
 
+const MenuBarContainer = styled.div`
+    display: flex;
+    align-items: center;
+    padding: 20px 30px 0;
+
+    ${props => props.isVisible && `display: none`}
+
+    ${media.mobile`
+        padding: 15px 20px 0;
+    `}
+
+    .icon {
+        width: 35px;
+        cursor: pointer;
+    }
+`;
+
 const NavBarContainer = styled.nav`
     border-bottom: solid 1px #e5e5e5;
     height: 80px;
 
     ${media.tablet`
-        height: 280px;
-        /* display: none; */
+        height: 100%;
+        padding: 10px 0;
     `};
+
+    .icon {
+        cursor: pointer;
+        position: absolute;
+        width: 25px;
+        top: 25px;
+        left: 35px;
+
+        ${media.mobile`
+            top: 20px;
+            left: 24px;
+        `};
+    }
 `;
 
 const CategoryContainer = styled.div`
@@ -69,22 +102,50 @@ const Category = styled(NavLink)`
 `;
 
 const NavBar = ({ country }) => {
-    return (
-        <NavBarContainer>
-            <CategoryContainer>
-                {categories.map(c => (
-                    <Category
-                        key={c}
-                        activeClassName="active"
-                        exact
-                        to={c === 'all' ? `/${country}` : `/${country}/${c}`}
-                    >
-                        {c.charAt(0).toUpperCase() + c.substring(1)}
-                    </Category>
-                ))}
-            </CategoryContainer>
-        </NavBarContainer>
+    const [isVisible, setVisible] = useState(false);
+    const [width] = useWindowSzie();
+    const isTablet = width < 768;
+
+    const navToggle = useCallback(() => {
+        setVisible(!isVisible);
+    }, [isVisible]);
+
+    const nav = useMemo(
+        () => {
+            if (width <= 768 && !isVisible) {
+                return (
+                    <MenuBarContainer onClick={navToggle} isVisible={isVisible}>
+                        <MenuBar className="icon" />
+                    </MenuBarContainer>
+                );
+            }
+
+            if (width > 768) setVisible(false);
+
+            return (
+                <NavBarContainer>
+                    {isTablet && <CrossOut className="icon" onClick={navToggle} />}
+                    <CategoryContainer>
+                        {categories.map(c => (
+                            <Category
+                                onClick={navToggle}
+                                key={c}
+                                activeClassName="active"
+                                exact
+                                to={c === 'all' ? `/${country}` : `/${country}/${c}`}
+                            >
+                                {c.charAt(0).toUpperCase() + c.substring(1)}
+                            </Category>
+                        ))}
+                    </CategoryContainer>
+                </NavBarContainer>
+            );
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [isTablet, isVisible]
     );
+
+    return <>{nav}</>;
 };
 
 export default NavBar;

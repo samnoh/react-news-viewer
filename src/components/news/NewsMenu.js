@@ -168,11 +168,11 @@ const NewsMenu = memo(({ history, location, category, country, query }) => {
                         value={value}
                         onChange={onChange}
                         placeholder="Search"
-                        maxlength="255"
+                        maxLength="255"
                         autoComplete="off"
                     />
                     <button type="submit" className="btn">
-                        <Search class="search_btn" />
+                        <Search className="search_btn" />
                     </button>
                 </form>
             </InputBlock>
