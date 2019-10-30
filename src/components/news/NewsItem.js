@@ -25,8 +25,10 @@ const BodyBlock = styled.div`
         font-size: 24px;
         margin-bottom: 20px;
 
-        &:hover {
-            color: #20487b;
+        a {
+            &:hover {
+                color: rgba(0, 0, 0, 0.6);
+            }
         }
     }
 
@@ -52,6 +54,7 @@ const Image = styled.img`
     object-fit: cover;
     object-position: 50% 0;
     border-radius: 5px;
+    transition: all 0.3s ease-in-out;
 
     ${media.tablet`
         width: 100%;
@@ -62,6 +65,10 @@ const Image = styled.img`
                 margin-top: 0;
             `}
     `}
+
+    &:hover {
+        filter: brightness(0.8);
+    }
 `;
 
 const NewsItem = memo(({ article, index }) => {

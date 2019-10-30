@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import { Context as NewsContext } from 'contexts/newsContext';
 
 const Container = styled.footer`
+    padding: 0 30px;
     height: 50px;
     max-width: 1080px;
     margin: 0 auto;
-    margin-right: 30px;
 
     .text {
         font-weight: 300;
