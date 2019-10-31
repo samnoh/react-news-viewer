@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 
 import media from 'styles/media';
@@ -103,12 +103,32 @@ const Image = styled.img`
 `;
 
 const NewsItem = memo(({ article }) => {
-    const { title, description, url, urlToImage, publishedAt } = article;
+    const {
+        title,
+        description,
+        url,
+        urlToImage,
+        publishedAt,
+        source: { name }
+    } = article;
     const date = new Date(publishedAt);
 
     const onError = useCallback(e => {
         e.target.src = 'https://via.placeholder.com/200';
     }, []);
+
+    const checkImageSrc = useMemo(
+        () => {
+            if (urlToImage && (urlToImage.includes('jpg') || urlToImage.includes('png'))) {
+                return urlToImage;
+            }
+            return 'https://via.placeholder.com/200';
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        []
+    );
+
+    if (name === 'Chosun.com') return null;
 
     return (
         <ItemContainer>
@@ -125,7 +145,7 @@ const NewsItem = memo(({ article }) => {
             </BodyBlock>
             <ImageBlock>
                 <a href={url} target="_blank" rel="noopener noreferrer">
-                    <Image src={urlToImage} alt={title} onError={onError} />
+                    <Image src={checkImageSrc} alt={`${name} thumnail`} onError={onError} />
                 </a>
             </ImageBlock>
         </ItemContainer>

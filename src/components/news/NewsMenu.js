@@ -120,8 +120,10 @@ const NewsMenu = memo(({ history, location, category, country, query }) => {
 
     const onSelectChange = useCallback(
         e => {
+            const selectedCountry = e.target.value;
             const c = category === 'all' ? '' : `/${category}`;
-            history.push(`/${e.target.value}${c}`);
+            history.push(`/${selectedCountry}${c}`);
+            localStorage.setItem('news_country', selectedCountry);
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [category]

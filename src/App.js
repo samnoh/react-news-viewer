@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
@@ -23,12 +23,14 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const App = () => {
+    const [country] = useState(localStorage.getItem('news_country'));
+
     return (
         <>
             <GlobalStyle />
             <Switch>
                 <Route exact path="/">
-                    <Redirect to="/us" />
+                    {country ? <Redirect to={`/${country}`} /> : <Redirect to="/us" />}
                 </Route>
                 <Route exact path="/:country/:category?" component={NewsPage} />
                 <Route component={NotFoundPage} />
