@@ -138,6 +138,7 @@ const NewsMenu = memo(({ history, location, category, country, query }) => {
     const onSubmit = useCallback(
         e => {
             e.preventDefault();
+            e.target.search.blur();
             setValue('');
             value.length
                 ? history.push(location.pathname + `?q=${value}`)
@@ -167,6 +168,7 @@ const NewsMenu = memo(({ history, location, category, country, query }) => {
                 <form onSubmit={onSubmit}>
                     <input
                         type="text"
+                        name="search"
                         value={value}
                         onChange={onChange}
                         placeholder="Search"
