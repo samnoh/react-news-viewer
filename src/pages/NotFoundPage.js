@@ -28,7 +28,13 @@ const PageContainer = styled.div`
     img {
         width: 500px;
         margin-bottom: 35px;
-        filter: blur(15);
+        transition: all 0.3s ease-in;
+
+        @media (hover: hover) {
+            &:hover {
+                filter: blur(2px);
+            }
+        }
 
         ${media.tablet`
             width: 280px;
