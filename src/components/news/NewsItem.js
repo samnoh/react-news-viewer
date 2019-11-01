@@ -30,6 +30,7 @@ const BodyBlock = styled.div`
     flex: 1;
 
     .title {
+        color: rgba(0, 0, 0, 0.75);
         font-size: 24px;
         margin-bottom: 20px;
         font-weight: 400;
@@ -42,7 +43,7 @@ const BodyBlock = styled.div`
         a {
             @media (hover: hover) {
                 &:hover {
-                    color: rgba(0, 0, 0, 0.6);
+                    opacity: 0.7;
                 }
             }
         }
@@ -60,6 +61,7 @@ const BodyBlock = styled.div`
     }
 
     .desc {
+        color: gray;
         line-height: 1.8;
         display: inline-block;
         font-weight: 300;
@@ -97,12 +99,12 @@ const Image = styled.img`
     ${props => props.isYoutubeUrl && `object-position: 50% 50%;`}
 
     ${media.tablet`
+        height: 115px;
         width: 100%;
         margin-bottom: 15px;
     `}
 
     ${media.mobile`
-        height: 175px;
         margin-bottom: 12px;
     `}
 

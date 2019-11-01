@@ -27,6 +27,7 @@ const MenuBarContainer = styled.div`
     }
 
     .title {
+        color: rgba(0, 0, 0, 0.75);
         user-select: none;
         font-size: 22px;
         flex: 1;
@@ -72,6 +73,7 @@ const CategoryContainer = styled.div`
 `;
 
 const Category = styled(NavLink)`
+    color: rgba(0, 0, 0, 0.8);
     cursor: pointer;
     user-select: none;
     text-align: center;
@@ -95,7 +97,7 @@ const Category = styled(NavLink)`
         font-weight: 400;
         display: block;
 
-        border-bottom: solid 2px black;
+        border-bottom: solid 2px rgba(0, 0, 0, 0.6);
 
         ${media.tablet`
             border-bottom: none;
