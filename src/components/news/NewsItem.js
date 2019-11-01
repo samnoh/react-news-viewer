@@ -99,7 +99,7 @@ const Image = styled.img`
     ${props => props.isYoutubeUrl && `object-position: 50% 50%;`}
 
     ${media.tablet`
-        height: 115px;
+        height: 130px;
         width: 100%;
         margin-bottom: 15px;
     `}

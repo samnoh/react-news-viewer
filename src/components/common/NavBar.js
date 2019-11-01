@@ -27,7 +27,7 @@ const MenuBarContainer = styled.div`
     }
 
     .title {
-        color: rgba(0, 0, 0, 0.75);
+        color: rgba(0, 0, 0, 0.8);
         user-select: none;
         font-size: 22px;
         flex: 1;
