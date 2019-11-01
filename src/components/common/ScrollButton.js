@@ -42,9 +42,9 @@ const ButtonContainer = styled.div`
 
 const ScrollButton = ({ up, down, isSmooth }) => {
     const scrollTo = useCallback(
-        toBottom => {
+        top => {
             window.scrollTo({
-                top: toBottom === 'bottom' ? document.body.scrollHeight : 0,
+                top,
                 left: 0,
                 behavior: isSmooth ? 'smooth' : 'auto'
             });
@@ -57,13 +57,13 @@ const ScrollButton = ({ up, down, isSmooth }) => {
     return (
         <ButtonContainer>
             {up && (
-                <div onClick={() => scrollTo()}>
-                    <UpChevron className="chevron"></UpChevron>
+                <div onClick={() => scrollTo(0)}>
+                    <UpChevron className="chevron" />
                 </div>
             )}
             {down && (
-                <div onClick={() => scrollTo('bottom')}>
-                    <DownChevron className="chevron"></DownChevron>
+                <div onClick={() => scrollTo(document.body.scrollHeight)}>
+                    <DownChevron className="chevron" />
                 </div>
             )}
         </ButtonContainer>
