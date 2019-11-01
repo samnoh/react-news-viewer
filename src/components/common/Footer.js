@@ -7,7 +7,7 @@ import { ReactComponent as GithubLogo } from 'assets/github_logo.svg';
 
 const Container = styled.footer`
     padding: 0 30px;
-    height: 80px;
+    height: 110px;
     max-width: 1080px;
     margin: 0 auto;
     display: flex;
@@ -34,9 +34,9 @@ const Container = styled.footer`
     }
 
     .logo {
-        vertical-align: text-top;
+        vertical-align: -1px;
         width: 15px;
-        margin-right: 3px;
+        margin-right: 4px;
         opacity: 0.3;
     }
 `;
