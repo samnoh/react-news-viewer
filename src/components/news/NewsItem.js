@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useCallback } from 'react';
+import React, { memo, useMemo, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -118,10 +118,11 @@ const NewsItem = memo(({ article }) => {
         publishedAt,
         source: { name }
     } = article;
+    const [imgError, setImgError] = useState(false);
     const date = new Date(publishedAt);
 
     const onError = useCallback(e => {
-        e.target.src = 'https://via.placeholder.com/200';
+        setImgError(true);
     }, []);
 
     const checkImageSrc = useMemo(
@@ -135,7 +136,11 @@ const NewsItem = memo(({ article }) => {
                 />
             );
 
-            if (url.includes('youtube')) {
+            if (imgError) {
+                return null;
+            }
+
+            if (url && url.includes('youtube')) {
                 const [, youtubeId] = url.split('=');
                 return ImageTag(`https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`, true);
             }
@@ -146,7 +151,7 @@ const NewsItem = memo(({ article }) => {
             return null;
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        []
+        [imgError]
     );
 
     if (name === 'Chosun.com') return null;
@@ -164,13 +169,13 @@ const NewsItem = memo(({ article }) => {
                     <div className="date">{`${date.getMonth() + 1}/${date.getDate()}`}</div>
                 </div>
             </BodyBlock>
-            <ImageBlock>
-                {checkImageSrc && (
+            {checkImageSrc && (
+                <ImageBlock>
                     <a href={url} target="_blank" rel="noopener noreferrer">
                         {checkImageSrc}
                     </a>
-                )}
-            </ImageBlock>
+                </ImageBlock>
+            )}
         </ItemContainer>
     );
 });
