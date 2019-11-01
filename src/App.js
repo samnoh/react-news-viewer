@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import NewsPage from 'pages/NewsPage';
-import NotFoundPage from 'pages/NotFoundPage';
+const NewsPage = lazy(() => import('pages/NewsPage'));
+const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -28,14 +28,16 @@ const App = () => {
     return (
         <>
             <GlobalStyle />
-            <Switch>
-                <Route exact path="/">
-                    {country ? <Redirect to={`/${country}`} /> : <Redirect to="/us" />}
-                </Route>
-                <Route exact path="/404" component={NotFoundPage} />
-                <Route exact path="/:country/:category?" component={NewsPage} />
-                <Route component={NotFoundPage} />
-            </Switch>
+            <Suspense fallback={null}>
+                <Switch>
+                    <Route exact path="/">
+                        {country ? <Redirect to={`/${country}`} /> : <Redirect to="/us" />}
+                    </Route>
+                    <Route exact path="/404" component={NotFoundPage} />
+                    <Route exact path="/:country/:category?" component={NewsPage} />
+                    <Route component={NotFoundPage} />
+                </Switch>
+            </Suspense>
         </>
     );
 };
