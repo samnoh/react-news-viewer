@@ -17,7 +17,12 @@ export const getNews = dispatch => async ({ country, category, query: q }) => {
 
     dispatch({ type: GET_NEWS_LOADING });
     try {
-        const news = await newsApi.get('', { params });
+        const news = await newsApi.get('', {
+            params: {
+                ...params,
+                pageSize: 100
+            }
+        });
         dispatch(getNewsAction(news.data));
         dispatch({ type: GET_NEWS_DONE });
     } catch (e) {

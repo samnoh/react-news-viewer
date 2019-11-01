@@ -129,6 +129,7 @@ const NewsItem = memo(({ article }) => {
         () => {
             const ImageTag = (src, isYoutubeUrl) => (
                 <Image
+                    loading="lazy"
                     src={src}
                     alt={`${name} thumnail`}
                     onError={onError}
