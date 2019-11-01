@@ -11,7 +11,7 @@ import NewsMenu from 'components/news/NewsMenu';
 import NewsList from 'components/news/NewsList';
 import Footer from 'components/common/Footer';
 import media from 'styles/media';
-import { capitalize, countries } from 'lib/helpers';
+import { capitalize, countries, categories } from 'lib/helpers';
 
 const Main = styled.main`
     max-width: 1080px;
@@ -33,15 +33,15 @@ const NewsPage = ({ match, location }) => {
         return (
             <Helmet>
                 <title>
-                    {category === 'all' ? 'General' : capitalize(category)} |{' '}
+                    {category === 'all' ? 'Headlines' : capitalize(category)} |{' '}
                     {country.toUpperCase()}
                 </title>
             </Helmet>
         );
     }, [category, country]);
 
-    if (country.length !== 2 || !countries.includes(country)) {
-        return <Redirect to="404" />;
+    if (!countries.includes(country) || !categories.includes(category)) {
+        return <Redirect to="/404" />;
     }
 
     return (

@@ -6,19 +6,9 @@ import PropTypes from 'prop-types';
 import media from 'styles/media';
 import useWindowSzie from 'hooks/useWindowSize';
 import { Context as NewsContext } from 'contexts/newsContext';
-import { capitalize } from 'lib/helpers';
+import { capitalize, categories } from 'lib/helpers';
 import { ReactComponent as MenuBar } from 'assets/menu.svg';
 import { ReactComponent as CrossOut } from 'assets/cross-out.svg';
-
-const categories = [
-    'all',
-    'business',
-    'entertainment',
-    'health',
-    'science',
-    'sports',
-    'technology'
-];
 
 const MenuBarContainer = styled.div`
     display: flex;
