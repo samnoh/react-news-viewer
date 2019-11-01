@@ -27,6 +27,7 @@ const MenuBarContainer = styled.div`
     }
 
     .title {
+        user-select: none;
         font-size: 22px;
         flex: 1;
         text-align: center;
@@ -138,8 +139,8 @@ const NavBar = ({ category, country }) => {
         () => {
             if (width <= 768 && !isVisible) {
                 return (
-                    <MenuBarContainer onClick={navToggle} isVisible={isVisible}>
-                        <MenuBar className="icon" />
+                    <MenuBarContainer isVisible={isVisible}>
+                        <MenuBar className="icon" onClick={navToggle} />
                         <div className="title">
                             {category === 'all' ? 'Headlines' : capitalize(category)}
                         </div>
