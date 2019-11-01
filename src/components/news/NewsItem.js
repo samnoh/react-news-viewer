@@ -1,6 +1,5 @@
 import React, { memo, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
-
 import media from 'styles/media';
 
 const ItemContainer = styled.article`
@@ -24,7 +23,6 @@ const ItemContainer = styled.article`
 
 const BodyBlock = styled.div`
     align-self: stretch;
-    margin-right: 15px;
     flex: 1;
 
     .title {
@@ -71,8 +69,13 @@ const BodyBlock = styled.div`
 `;
 
 const ImageBlock = styled.div`
+    min-height: 200px;
+    margin-left: 15px;
+
     ${media.tablet`
         width: 100%;
+        min-height: 0;
+        margin-left: 0;
     `}
 `;
 
@@ -84,6 +87,9 @@ const Image = styled.img`
     object-position: 50% 0;
     border-radius: 5px;
     transition: filter 0.3s ease-in-out;
+
+    ${props => props.isYoutubeUrl && `object-position: 50% 50%;`}
+
 
     ${media.tablet`
         width: 100%;
@@ -119,10 +125,24 @@ const NewsItem = memo(({ article }) => {
 
     const checkImageSrc = useMemo(
         () => {
-            if (urlToImage && (urlToImage.includes('jpg') || urlToImage.includes('png'))) {
-                return urlToImage;
+            const ImageTag = (src, isYoutubeUrl) => (
+                <Image
+                    src={src}
+                    alt={`${name} thumnail`}
+                    onError={onError}
+                    isYoutubeUrl={isYoutubeUrl}
+                />
+            );
+
+            if (url.includes('youtube')) {
+                const [, youtubeId] = url.split('=');
+                return ImageTag(`https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`, true);
             }
-            return 'https://via.placeholder.com/200';
+
+            if (urlToImage && (urlToImage.includes('jpg') || urlToImage.includes('png')))
+                return ImageTag(urlToImage);
+
+            return null;
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         []
@@ -144,9 +164,11 @@ const NewsItem = memo(({ article }) => {
                 </div>
             </BodyBlock>
             <ImageBlock>
-                <a href={url} target="_blank" rel="noopener noreferrer">
-                    <Image src={checkImageSrc} alt={`${name} thumnail`} onError={onError} />
-                </a>
+                {checkImageSrc && (
+                    <a href={url} target="_blank" rel="noopener noreferrer">
+                        {checkImageSrc}
+                    </a>
+                )}
             </ImageBlock>
         </ItemContainer>
     );
