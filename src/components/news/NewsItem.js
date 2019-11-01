@@ -1,5 +1,6 @@
 import React, { memo, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
+
 import media from 'styles/media';
 
 const ItemContainer = styled.article`
@@ -89,7 +90,6 @@ const Image = styled.img`
     transition: filter 0.3s ease-in-out;
 
     ${props => props.isYoutubeUrl && `object-position: 50% 50%;`}
-
 
     ${media.tablet`
         width: 100%;

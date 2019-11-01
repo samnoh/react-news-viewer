@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { Context as NewsContext } from 'contexts/newsContext';
-import { ReactComponent as GithubLogo } from 'assets/github_logo.svg';
 import media from 'styles/media';
+import { ReactComponent as GithubLogo } from 'assets/github_logo.svg';
 
 const Container = styled.footer`
     padding: 0 30px;
