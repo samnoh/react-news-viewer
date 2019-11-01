@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
+import { countries } from 'lib/helpers';
 import media from 'styles/media';
 
 const PageContainer = styled.div`
@@ -53,6 +54,8 @@ const Redirect = styled(Link)`
 `;
 
 const NotFoundPage = () => {
+    const [country] = useState(localStorage.getItem('news_country'));
+
     return (
         <>
             <Helmet>
@@ -61,7 +64,7 @@ const NotFoundPage = () => {
             <PageContainer>
                 <h1>404 — Page Not Found</h1>
                 <img src="/404.png" alt="Page Not Found" />
-                <Redirect to="/">Go Back Home</Redirect>
+                <Redirect to={countries.includes(country) ? '/' : '/us'}>Go Back Home</Redirect>
             </PageContainer>
         </>
     );

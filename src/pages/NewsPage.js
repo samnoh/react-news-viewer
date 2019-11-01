@@ -2,13 +2,14 @@ import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import qs from 'qs';
 import { Helmet } from 'react-helmet';
+import { Redirect } from 'react-router-dom';
 
 import NavBar from 'components/common/NavBar';
 import NewsMenu from 'components/news/NewsMenu';
 import NewsList from 'components/news/NewsList';
 import Footer from 'components/common/Footer';
 import media from 'styles/media';
-import { capitalize } from 'lib/helpers';
+import { capitalize, countries } from 'lib/helpers';
 
 const Main = styled.main`
     max-width: 1080px;
@@ -36,6 +37,10 @@ const NewsPage = ({ match, location }) => {
             </Helmet>
         );
     }, [category, country]);
+
+    if (country.length !== 2 || !countries.includes(country)) {
+        return <Redirect to="404" />;
+    }
 
     return (
         <>

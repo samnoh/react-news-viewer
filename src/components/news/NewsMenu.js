@@ -6,6 +6,7 @@ import media from 'styles/media';
 import { Context as NewsContext } from 'contexts/newsContext';
 import useInput from 'hooks/useInput';
 import { ReactComponent as Search } from 'assets/search.svg';
+import { countries } from 'lib/helpers';
 
 const MenuContainer = styled.div`
     display: flex;
@@ -155,9 +156,9 @@ const NewsMenu = memo(({ history, location, category, country, query }) => {
             <BottonBlock>
                 <SelectContainer className="btn">
                     <select name="country" onChange={onSelectChange} value={country}>
-                        <option value="us">US</option>
-                        <option value="nz">NZ</option>
-                        <option value="kr">KR</option>
+                        {countries.map(c => (
+                            <option value={c}>{c.toUpperCase()}</option>
+                        ))}
                     </select>
                 </SelectContainer>
                 <RefreshContainer>

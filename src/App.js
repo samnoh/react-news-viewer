@@ -32,6 +32,7 @@ const App = () => {
                 <Route exact path="/">
                     {country ? <Redirect to={`/${country}`} /> : <Redirect to="/us" />}
                 </Route>
+                <Route exact path="/404" component={NotFoundPage} />
                 <Route exact path="/:country/:category?" component={NewsPage} />
                 <Route component={NotFoundPage} />
             </Switch>

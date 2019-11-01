@@ -39,16 +39,16 @@ const NewsList = ({ country, category, query }) => {
         );
     }
 
+    if (error) {
+        return <ArticleContainer>Error</ArticleContainer>;
+    }
+
     if (!articles) {
         return (
             <ArticleContainer>
                 <div className="errorMessage">API request was not successful...</div>
             </ArticleContainer>
         );
-    }
-
-    if (error) {
-        return <ArticleContainer>Error</ArticleContainer>;
     }
 
     if (!articles.length) {
