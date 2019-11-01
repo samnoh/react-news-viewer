@@ -11,14 +11,16 @@ const ItemContainer = styled.article`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 216px;
 
     &:last-child {
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
 
     ${media.tablet`
-        padding-bottom: 5px;
-        margin-bottom: 20px;
+        min-height: initial;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
         flex-direction: column-reverse;
     `}
 `;
@@ -46,6 +48,17 @@ const BodyBlock = styled.div`
         }
     }
 
+    .date {
+        display: inline-block;
+        color: rgba(0, 0, 0, 0.3);
+        font-size: 14px;
+        vertical-align: 1px;
+
+        ${media.mobile`
+            font-size: 13px;
+        `}
+    }
+
     .desc {
         line-height: 1.8;
         display: inline-block;
@@ -55,17 +68,6 @@ const BodyBlock = styled.div`
 
         ${media.mobile`
             font-size: 15px;
-        `}
-    }
-
-    .date {
-        display: inline-block;
-        color: rgba(0, 0, 0, 0.3);
-        font-size: 14px;
-        vertical-align: 1px;
-
-        ${media.mobile`
-            font-size: 13px;
         `}
     }
 `;
@@ -82,6 +84,8 @@ const ImageBlock = styled.div`
 `;
 
 const Image = styled.img`
+    box-sizing: border-box;
+    border: solid 1px #e5e5e5;
     display: block;
     width: 200px;
     height: 200px;
@@ -99,7 +103,7 @@ const Image = styled.img`
 
     ${media.mobile`
         height: 175px;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
     `}
 
     @media (hover: hover) {
@@ -163,12 +167,13 @@ const NewsItem = memo(({ article }) => {
                 <div className="title">
                     <a href={url} target="_blank" rel="noopener noreferrer">
                         {title}
-                    </a>
+                    </a>{' '}
+                    {/* TODO: format date */}
+                    <div className="date">{`${String(date.getFullYear())}/${date.getMonth() + 1}/${(
+                        '0' + date.getDate()
+                    ).slice(-2)} ${date.getHours()}:${('0' + date.getMinutes()).slice(-2)}`}</div>
                 </div>
-                <div className="desc">
-                    {description}{' '}
-                    <div className="date">{`${date.getMonth() + 1}/${date.getDate()}`}</div>
-                </div>
+                <div className="desc">{description}</div>
             </BodyBlock>
             {checkImageSrc && (
                 <ImageBlock>
