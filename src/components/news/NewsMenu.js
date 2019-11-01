@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, memo } from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import media from 'styles/media';
 import { Context as NewsContext } from 'contexts/newsContext';
@@ -157,7 +158,9 @@ const NewsMenu = memo(({ history, location, category, country, query }) => {
                 <SelectContainer className="btn">
                     <select name="country" onChange={onSelectChange} value={country}>
                         {countries.map(c => (
-                            <option value={c}>{c.toUpperCase()}</option>
+                            <option key={c} value={c}>
+                                {c.toUpperCase()}
+                            </option>
                         ))}
                     </select>
                 </SelectContainer>
@@ -186,5 +189,13 @@ const NewsMenu = memo(({ history, location, category, country, query }) => {
         </MenuContainer>
     );
 });
+
+NewsMenu.propTypes = {
+    history: PropTypes.object,
+    location: PropTypes.object,
+    country: PropTypes.string,
+    category: PropTypes.string,
+    query: PropTypes.string
+};
 
 export default withRouter(NewsMenu);

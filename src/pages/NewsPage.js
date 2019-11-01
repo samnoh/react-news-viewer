@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import qs from 'qs';
 import { Helmet } from 'react-helmet';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import NavBar from 'components/common/NavBar';
 import ScrollButton from 'components/common/ScrollButton';
@@ -55,6 +56,11 @@ const NewsPage = ({ match, location }) => {
             <Footer />
         </>
     );
+};
+
+NewsMenu.propTypes = {
+    match: PropTypes.object,
+    location: PropTypes.object
 };
 
 export default NewsPage;

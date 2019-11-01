@@ -1,5 +1,6 @@
 import React, { memo, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import media from 'styles/media';
 
@@ -173,5 +174,18 @@ const NewsItem = memo(({ article }) => {
         </ItemContainer>
     );
 });
+
+NewsItem.propTypes = {
+    article: PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        url: PropTypes.string,
+        urlToImage: PropTypes.string,
+        publishedAt: PropTypes.string,
+        source: PropTypes.shape({
+            name: PropTypes.string
+        })
+    })
+};
 
 export default NewsItem;

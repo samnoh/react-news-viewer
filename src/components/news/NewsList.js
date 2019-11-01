@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import NewsItem from 'components/news/NewsItem';
 import { Context as NewsContext } from 'contexts/newsContext';
@@ -18,17 +19,18 @@ const ArticleContainer = styled.div`
     }
 `;
 
-const NewsList = ({ country, category, query }) => {
+const NewsList = props => {
+    const { query } = props;
     const { state, getNews } = useContext(NewsContext);
     const { news, loading, error } = state;
     const { articles } = news;
 
     useEffect(
         () => {
-            getNews({ country, category, query });
+            getNews(props);
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [country, category, query]
+        [props]
     );
 
     if (loading) {
@@ -68,6 +70,12 @@ const NewsList = ({ country, category, query }) => {
             ))}
         </ArticleContainer>
     );
+};
+
+NewsList.propTypes = {
+    country: PropTypes.string,
+    category: PropTypes.string,
+    query: PropTypes.string
 };
 
 export default NewsList;

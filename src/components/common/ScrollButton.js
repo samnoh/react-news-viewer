@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { ReactComponent as UpChevron } from 'assets/up-chevron.svg';
 import { ReactComponent as DownChevron } from 'assets/down-chevron.svg';
@@ -57,12 +58,12 @@ const ScrollButton = ({ up, down, isSmooth }) => {
         <ButtonContainer>
             {up && (
                 <div onClick={() => scrollTo()}>
-                    <UpChevron class="chevron"></UpChevron>
+                    <UpChevron className="chevron"></UpChevron>
                 </div>
             )}
             {down && (
                 <div onClick={() => scrollTo('bottom')}>
-                    <DownChevron class="chevron"></DownChevron>
+                    <DownChevron className="chevron"></DownChevron>
                 </div>
             )}
         </ButtonContainer>
@@ -73,6 +74,12 @@ ScrollButton.defaultProps = {
     up: true,
     down: true,
     isSmooth: false
+};
+
+ScrollButton.propTypes = {
+    up: PropTypes.bool,
+    down: PropTypes.bool,
+    isSmooth: PropTypes.bool
 };
 
 export default ScrollButton;

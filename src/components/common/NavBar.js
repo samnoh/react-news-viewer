@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useMemo, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import media from 'styles/media';
 import useWindowSzie from 'hooks/useWindowSize';
@@ -170,6 +171,11 @@ const NavBar = ({ category, country }) => {
     );
 
     return <>{nav}</>;
+};
+
+NavBar.propTypes = {
+    category: PropTypes.string,
+    country: PropTypes.string
 };
 
 export default NavBar;
