@@ -1,4 +1,7 @@
-export const capitalize = text => text.charAt(0).toUpperCase() + text.substring(1);
+export const capitalize = text => {
+    const [firstLetter, ...rest] = text;
+    return firstLetter.toUpperCase() + rest.join('');
+};
 
 export const countries = ['us', 'nz', 'kr'];
 
