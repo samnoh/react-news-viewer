@@ -5,39 +5,41 @@ import PropTypes from 'prop-types';
 import media from 'styles/media';
 
 const ItemContainer = styled.article`
-    padding-bottom: 15px;
-    margin-bottom: 35px;
-    border-bottom: solid 1px #e5e5e5;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 216px;
+    height: 140px;
+    margin-bottom: 20px;
+    border-bottom: solid 1px #e5e5e5;
 
     &:last-child {
         margin-bottom: 0;
     }
 
-    ${media.tablet`
-        min-height: initial;
-        padding-bottom: 10px;
-        margin-bottom: 15px;
-        flex-direction: column-reverse;
+    ${media.mobile`
+        height: 88px;
+        margin-bottom: 16px;
     `}
 `;
 
 const BodyBlock = styled.div`
-    align-self: stretch;
-    flex: 1;
+    width: 100%;
+    overflow-wrap: break-word;
 
     .title {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
         color: rgba(0, 0, 0, 0.75);
         font-size: 24px;
-        margin-bottom: 20px;
+        margin-bottom: 8px;
         font-weight: 400;
+        overflow: hidden;
+        line-height: 1.4;
 
         ${media.mobile`
-            font-size: 20px;
-            margin-bottom: 10px;
+            margin-top: 2px;
+            font-size: 18px;
+            margin-bottom: 0;
+            -webkit-line-clamp: 3;
         `}
 
         a {
@@ -49,48 +51,33 @@ const BodyBlock = styled.div`
         }
     }
 
-    .date {
-        display: inline-block;
-        color: rgba(0, 0, 0, 0.3);
-        font-size: 14px;
-        vertical-align: 1px;
-
-        ${media.mobile`
-            font-size: 13px;
-        `}
-    }
-
     .desc {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
         color: gray;
-        line-height: 1.8;
-        display: inline-block;
         font-weight: 300;
-        overflow-wrap: break-word;
-        width: 100%;
+        overflow: hidden;
+        line-height: 1.5;
 
         ${media.mobile`
-            font-size: 15px;
+            display: none;
         `}
     }
 `;
 
 const ImageBlock = styled.div`
-    min-height: 200px;
-    margin-left: 15px;
+    margin-left: 18px;
 
-    ${media.tablet`
-        width: 100%;
-        min-height: 0;
-        margin-left: 0;
-    `}
+    ${media.mobile`
+        margin-left: 10px;
+    `};
 `;
 
 const Image = styled.img`
-    box-sizing: border-box;
     border: solid 1px #e5e5e5;
-    display: block;
-    width: 200px;
-    height: 200px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
     object-position: 50% 0;
     border-radius: 5px;
@@ -98,14 +85,9 @@ const Image = styled.img`
 
     ${props => props.isYoutubeUrl && `object-position: 50% 50%;`}
 
-    ${media.tablet`
-        height: 130px;
-        width: 100%;
-        margin-bottom: 15px;
-    `}
-
     ${media.mobile`
-        margin-bottom: 12px;
+        width: 75px;
+        height: 75px;
     `}
 
     @media (hover: hover) {
@@ -121,11 +103,9 @@ const NewsItem = memo(({ article }) => {
         description,
         url,
         urlToImage,
-        publishedAt,
         source: { name }
     } = article;
     const [imgError, setImgError] = useState(false);
-    const date = new Date(publishedAt);
 
     const onError = useCallback(e => {
         setImgError(true);
@@ -169,12 +149,9 @@ const NewsItem = memo(({ article }) => {
                 <div className="title">
                     <a href={url} target="_blank" rel="noopener noreferrer">
                         {title}
-                    </a>{' '}
-                    {/* TODO: format date */}
-                    <div className="date">{`${String(date.getFullYear())}/${date.getMonth() + 1}/${(
-                        '0' + date.getDate()
-                    ).slice(-2)} ${date.getHours()}:${('0' + date.getMinutes()).slice(-2)}`}</div>
+                    </a>
                 </div>
+
                 <div className="desc">{description}</div>
             </BodyBlock>
             {checkImageSrc && (

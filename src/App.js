@@ -9,9 +9,11 @@ const GlobalStyle = createGlobalStyle`
     * {
         margin: 0;
         padding: 0;
+        box-sizing: initial;
     }
 
     body {
+        box-sizing: border-box;
         overflow-y: scroll;
         font-family: 'Roboto', sans-serif;
     }
