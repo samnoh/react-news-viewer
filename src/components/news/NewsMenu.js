@@ -1,12 +1,14 @@
-import React, { useCallback, useContext, memo } from 'react';
+import React, { useCallback, useContext, useState, useEffect, memo } from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import media from 'styles/media';
+import { rotate360deg } from 'styles/animation';
 import { Context as NewsContext } from 'contexts/newsContext';
 import useInput from 'hooks/useInput';
 import { ReactComponent as Search } from 'assets/search.svg';
+import { ReactComponent as Refresh } from 'assets/reload.svg';
 import { countries } from 'lib/helpers';
 
 const MenuContainer = styled.div`
@@ -67,19 +69,30 @@ const SelectContainer = styled.div`
 `;
 
 const RefreshContainer = styled.div`
-    button {
+    button.btn {
         cursor: pointer;
         border-radius: 5px;
         transition: all 0.3s ease-out;
+        width: 34px;
+        height: 27px;
+        padding-top: 3px;
+
+        .refresh {
+            width: 16px;
+            fill: rgba(0, 0, 0, 0.6);
+        }
+
+        .rotate {
+            animation: ${rotate360deg} 1s linear infinite;
+        }
     }
 `;
 
 const InputBlock = styled.div`
-    box-sizing: inherit;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.5);
     height: 30px;
-    width: 188px;
+    width: 112px;
     padding: 0 5px;
 
     ${media.tablet`
@@ -90,7 +103,7 @@ const InputBlock = styled.div`
         float: left;
         font-weight: 300;
         height: 30px;
-        width: calc(100% - 25px);
+        width: calc(100% - 35px);
         outline: none;
         font-size: 16px;
         border: none;
@@ -117,8 +130,16 @@ const InputBlock = styled.div`
 `;
 
 const NewsMenu = memo(({ history, location, category, country, query }) => {
-    const { getNews } = useContext(NewsContext);
+    const {
+        state: { loading },
+        getNews
+    } = useContext(NewsContext);
     const [value, setValue, onChange] = useInput();
+    const [onRefresh, setOnRefrsh] = useState(false);
+
+    useEffect(() => {
+        if (!loading) setOnRefrsh(false);
+    }, [loading]);
 
     const onSelectChange = useCallback(
         e => {
@@ -133,6 +154,7 @@ const NewsMenu = memo(({ history, location, category, country, query }) => {
 
     const onClick = useCallback(
         () => {
+            setOnRefrsh(true);
             getNews({ category, country, query });
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -166,7 +188,7 @@ const NewsMenu = memo(({ history, location, category, country, query }) => {
                 </SelectContainer>
                 <RefreshContainer>
                     <button className="btn" onClick={onClick}>
-                        Refresh
+                        <Refresh className={`refresh ${onRefresh ? 'rotate' : ''}`} />
                     </button>
                 </RefreshContainer>
             </BottonBlock>
