@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
-import { countries } from 'lib/helpers';
+import NavBar from 'components/common/NavBar';
 import media from 'styles/media';
 
 const PageContainer = styled.div`
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: #fcf9f4;
-    height: 100vh;
+    height: calc(100vh - 81px);
     text-align: center;
+
+    ${media.mobile`
+        height: calc(100vh - 69px);
+    `};
 
     h1 {
         font-weight: 400;
@@ -42,23 +45,6 @@ const PageContainer = styled.div`
     }
 `;
 
-const Redirect = styled(Link)`
-    font-weight: 300;
-    color: gray;
-    border: 1px solid gray;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: all 0.3s ease-in;
-
-    @media (hover: hover) {
-        &:hover {
-            background-color: white;
-            border-color: black;
-            color: black;
-        }
-    }
-`;
-
 const NotFoundPage = () => {
     const [country] = useState(localStorage.getItem('news_country'));
 
@@ -67,10 +53,10 @@ const NotFoundPage = () => {
             <Helmet>
                 <title>404 — Page Not Found</title>
             </Helmet>
+            <NavBar country={country} category={'404'} />
             <PageContainer>
-                <h1>404 — Page Not Found</h1>
+                <h1>Page Not Found</h1>
                 <img src="/404.png" alt="Page Not Found" />
-                <Redirect to={countries.includes(country) ? '/' : '/us'}>Go Back Home</Redirect>
             </PageContainer>
         </>
     );
