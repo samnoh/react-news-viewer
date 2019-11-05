@@ -27,7 +27,8 @@ const MenuBarContainer = styled.div`
     }
 
     .title {
-        color: rgba(0, 0, 0, 0.8);
+        font-weight: 300;
+        color: #4a5568;
         user-select: none;
         font-size: 22px;
         flex: 1;
@@ -73,7 +74,7 @@ const CategoryContainer = styled.div`
 `;
 
 const Category = styled(NavLink)`
-    color: rgba(0, 0, 0, 0.8);
+    color: #4a5568;
     cursor: pointer;
     user-select: none;
     text-align: center;
@@ -89,7 +90,7 @@ const Category = styled(NavLink)`
 
     @media (hover: hover) {
         &:hover {
-            color: rgba(0, 0, 0, 0.5);
+            color: #a0aec0;
         }
     }
 
@@ -97,7 +98,7 @@ const Category = styled(NavLink)`
         font-weight: 400;
         display: block;
 
-        border-bottom: solid 2px rgba(0, 0, 0, 0.6);
+        border-bottom: solid 2px #4a5568;
 
         ${media.tablet`
             border-bottom: none;

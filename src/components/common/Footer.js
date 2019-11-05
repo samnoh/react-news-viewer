@@ -15,7 +15,7 @@ const Container = styled.footer`
     align-items: center;
     flex-direction: row;
     font-weight: 300;
-    color: gray;
+    color: #718096;
 
     ${media.mobile`
         padding: 0 15px;
@@ -25,11 +25,11 @@ const Container = styled.footer`
     .right {
         cursor: pointer;
         &:hover {
-            color: rgba(0, 0, 0, 0.3);
+            color: #cbd5e0;
         }
 
         &:hover .logo {
-            opacity: 0.2;
+            opacity: 0.15;
         }
     }
 

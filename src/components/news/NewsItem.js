@@ -8,7 +8,7 @@ const ItemContainer = styled.article`
     display: flex;
     height: 140px;
     margin-bottom: 20px;
-    border-bottom: solid 1px #e5e5e5;
+    border-bottom: solid 1px #e2e8f0;
 
     &:last-child {
         margin-bottom: 0;
@@ -23,12 +23,13 @@ const ItemContainer = styled.article`
 const BodyBlock = styled.div`
     width: 100%;
     overflow-wrap: break-word;
+    padding-right: 5px;
 
     .title {
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
-        color: rgba(0, 0, 0, 0.75);
+        color: #2d3748;
         font-size: 24px;
         margin-bottom: 8px;
         font-weight: 400;
@@ -67,7 +68,7 @@ const BodyBlock = styled.div`
 `;
 
 const ImageBlock = styled.div`
-    margin-left: 18px;
+    margin-left: 10px;
 
     ${media.mobile`
         margin-left: 10px;
@@ -75,7 +76,7 @@ const ImageBlock = styled.div`
 `;
 
 const Image = styled.img`
-    border: solid 1px #e5e5e5;
+    border: solid 1px #e2e8f0;
     width: 120px;
     height: 120px;
     object-fit: cover;
