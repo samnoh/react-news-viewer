@@ -14,7 +14,7 @@ import media from 'styles/media';
 import { capitalize, countries, categories } from 'lib/helpers';
 
 const Main = styled.main`
-    max-width: 1080px;
+    max-width: 1024px;
     margin: 0 auto;
     padding: 0 30px;
 

@@ -6,7 +6,7 @@ import NewsItem from 'components/news/NewsItem';
 import { Context as NewsContext } from 'contexts/newsContext';
 
 const ArticleContainer = styled.div`
-    max-width: 1080px;
+    max-width: 1024px;
     margin: 0 auto;
 
     h2 {

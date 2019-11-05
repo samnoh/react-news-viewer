@@ -8,7 +8,7 @@ import { ReactComponent as GithubLogo } from 'assets/github_logo.svg';
 const Container = styled.footer`
     padding: 0 30px;
     height: 110px;
-    max-width: 1080px;
+    max-width: 1024px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
