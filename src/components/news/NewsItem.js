@@ -37,7 +37,7 @@ const BodyBlock = styled.div`
 
         ${media.mobile`
             margin-top: 2px;
-            font-size: 18px;
+            font-size: 16px;
             margin-bottom: 0;
             -webkit-line-clamp: 3;
         `}
