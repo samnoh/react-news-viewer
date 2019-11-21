@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import media from 'styles/media';
-import useWindowSzie from 'hooks/useWindowSize';
+import useWindowSize from 'hooks/useWindowSize';
 import { Context as NewsContext } from 'contexts/newsContext';
 import { capitalize, categories } from 'lib/helpers';
 import { ReactComponent as MenuBar } from 'assets/menu.svg';
@@ -109,7 +109,7 @@ const Category = styled(NavLink)`
 const NavBar = ({ category, country }) => {
     const { state } = useContext(NewsContext);
     const [isVisible, setVisible] = useState(false);
-    const [width] = useWindowSzie();
+    const [width] = useWindowSize();
     const isTablet = width < 768;
 
     useEffect(() => {
@@ -128,8 +128,7 @@ const NavBar = ({ category, country }) => {
                     key={c}
                     activeClassName="active"
                     exact
-                    to={c === 'all' ? `/${country}` : `/${country}/${c}`}
-                >
+                    to={c === 'all' ? `/${country}` : `/${country}/${c}`}>
                     {capitalize(c)}
                 </Category>
             ));
